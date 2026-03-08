@@ -56,5 +56,35 @@ namespace PrimeiraApiAspNet.Controllers
 
             return Ok(contato);
         }
+        [HttpDelete("{id}")]
+        public IActionResult DeletarContato(int id)
+        {
+            var contatoBanco = _context.Contatos.Find(id);
+            if (contatoBanco == null)
+            {
+                return NotFound();
+            }
+            _context.Contatos.Remove(contatoBanco);
+            _context.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpGet]
+        public IActionResult ObterTodosContatos()
+        {
+            var todosContatos = _context.Contatos.ToList();
+            return Ok(todosContatos);
+        }
+
+        [HttpGet("por-nome")]
+        public IActionResult ObterContatoPorNome([FromQuery] string nome)
+        {
+            var contatos = _context.Contatos
+                .Where(x => x.Nome.Contains(nome))
+                .ToList();
+
+            return Ok(contatos);
+        }
     }
+
 }
