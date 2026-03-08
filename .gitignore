@@ -1,0 +1,22 @@
+# Build artifacts
+bin/
+obj/
+
+# Visual Studio / Rider / VS Code extras
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Test and package artifacts
+TestResults/
+artifacts/
+*.nupkg
+*.snupkg
+
+# Optional env files
+.env
+.env.*
+!.env.example
